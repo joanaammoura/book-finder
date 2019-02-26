@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+// import App from "./App";
 // import "./Book.css";
 
 export default class Book extends Component {
@@ -9,7 +10,7 @@ export default class Book extends Component {
     }
 
     componentWillMount() {
-        this.props.refresh(this.state.value);
+        this.props.refresh();
     }
 
     componentWillReceiveProps(nextProps) {
@@ -19,14 +20,14 @@ export default class Book extends Component {
     }
 
     render() {
-        if (this.state.value) {
+        if (this.state.booksList) {
             return (
                 <div className="clearfix">
                     <div className="row">
-                        {this.state.booksList.map((value, index) => {
+                        {this.state.booksList.map((eachBook, index) => {
                             return (
                                 <div className="book-block" key={index}>
-                                    <div className="book-block_image"><img src={this.state.image} alt="XXX" /></div>
+                                    <div className="book-block_image"><img src={this.state.image} alt={this.state.title} /></div>
                                     <div className="book-block_title">{this.state.title} </div>
                                     <div className="book-block_author">By: {this.state.author}</div>
                                     <div className="book-block_publisher">Published By: {this.state.publisher}</div>

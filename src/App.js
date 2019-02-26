@@ -14,17 +14,17 @@ export default class App extends Component {
     refresh = () => {
         let url = `${Api.url}${this.state.value}${Api.key}`;
         axios.get(url).then(response => {
-            let valueList = response.items;
-            let eachValue = valueList.map(index => {
+            let booksList = response.items;
+            let eachBook = booksList.map(index => {
                 return {
-                    image: valueList[index].volumeInfo.imageLinks.thumbnail,
-                    title: valueList[index].volumeInfo.title,
-                    author: valueList[index].volumeInfo.authors[0],
-                    publisher: valueList[index].volumeInfo.publisher,
-                    link: valueList[index].volumeInfo.infoLink
+                    image: booksList[index].volumeInfo.imageLinks.thumbnail,
+                    title: booksList[index].volumeInfo.title,
+                    author: booksList[index].volumeInfo.authors[0],
+                    publisher: booksList[index].volumeInfo.publisher,
+                    link: booksList[index].volumeInfo.infoLink
                 };
             });
-            this.setState({ valueList: eachValue });
+            this.setState({ booksList: eachBook });
         });
     };
 
