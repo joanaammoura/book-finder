@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+.App {
+  background-color: #e6e3e3;
+  width: 100vw;
+  height: 100vh;
+  font-family: "Open Sans", sans-serif;
+  text-align: center;
+}
+
+.App-header {
+  text-align: center;
+  color: rgb(170, 170, 170);
+  font-weight: 600;
+  font-size: 2em;
+  letter-spacing: 8px;
+}
+
+.App.searchbar {
+  text-align: center;
+}
+
+.App-bookcards {
+  text-align: center;
+}
+
+.App-link {
+  color: #61dafb;
+}

@@ -1,0 +1,29 @@
+input {
+  width: 80%;
+    background-color: #fff;
+    border: 0;
+    border-radius: 0;
+    text-align: left;
+    font-family: "Montserrat", sans-serif;
+    color: rgb(170, 170, 170);
+    -webkit-appearance: none;
+  }
+  
+  ::placeholder {
+    color: #fff;
+  }
+  
+  .search-btn {
+    float: center;
+    width: auto;
+    height: auto;
+    background-color: rgb(45, 211, 3);
+    border: 0;
+    border-radius: 0;
+    font-family: "Montserrat", sans-serif;
+    font-size: auto;
+    font-weight: auto;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+  }
