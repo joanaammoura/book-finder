@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import App from "./App";
 // import "./Book.css";
 
 export default class Book extends Component {
@@ -9,29 +8,25 @@ export default class Book extends Component {
         this.state = {}
     }
 
-    componentWillMount() {
-        this.props.refresh();
-    }
-
-    componentWillReceiveProps(nextProps) {
-        this.setState({ value: nextProps.value }, () => {
-            this.props.refresh();
-        });
-    }
+    //    componentWillReceiveProps(nextProps) {
+    //        this.setState({ booksList: nextProps.eachBook }, () => {
+    //            this.props.refresh();
+    //        });
+    //    }
 
     render() {
-        if (this.state.booksList) {
+        if (this.props.booksList) {
             return (
                 <div className="clearfix">
                     <div className="row">
-                        {this.state.booksList.map((eachBook, index) => {
+                        {this.props.booksList.map((eachBook, index) => {
                             return (
                                 <div className="book-block" key={index}>
-                                    <div className="book-block_image"><img src={this.state.image} alt={this.state.title} /></div>
-                                    <div className="book-block_title">{this.state.title} </div>
-                                    <div className="book-block_author">By: {this.state.author}</div>
-                                    <div className="book-block_publisher">Published By: {this.state.publisher}</div>
-                                    <button className="book-block_link" src={this.state.infoLink}>See this Book</button>
+                                    <div className="book-block_image"><img src={eachBook.image} alt={eachBook.title} /></div>
+                                    <div className="book-block_title">{eachBook.title} </div>
+                                    <div className="book-block_author">By: {eachBook.author}</div>
+                                    <div className="book-block_publisher">Published By: {eachBook.publisher}</div>
+                                    <button className="book-block_link" src={eachBook.infoLink}>See this Book</button>
                                 </div>
                             );
                         })}

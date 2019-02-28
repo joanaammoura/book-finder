@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import axios from "axios";
-import './App.css';
+import './styles/App.css';
 import SearchBar from './SearchBar';
 import Book from './Book';
-import Api from './Api';
 
 export default class App extends Component {
     constructor(props) {
@@ -11,17 +10,17 @@ export default class App extends Component {
         this.state = {}
     }
 
-    refresh = () => {
-        let url = `${Api.url}${this.state.value}${Api.key}`;
+    refresh(params) {
+        let url = `https://www.googleapis.com/books/v1/volumes/?q=${params}&key=AIzaSyBviPGAJi2aDRF798qy22PYlgWLU71yq_g`;
         axios.get(url).then(response => {
-            let booksList = response.items;
-            let eachBook = booksList.map(index => {
+            let booksList = response.data.items;
+            let eachBook = booksList.map(book => {
                 return {
-                    image: booksList[index].volumeInfo.imageLinks.thumbnail,
-                    title: booksList[index].volumeInfo.title,
-                    author: booksList[index].volumeInfo.authors[0],
-                    publisher: booksList[index].volumeInfo.publisher,
-                    link: booksList[index].volumeInfo.infoLink
+                    image: book.volumeInfo.imageLinks.thumbnail,
+                    title: book.volumeInfo.title,
+                    author: book.volumeInfo.authors[0],
+                    publisher: book.volumeInfo.publisher,
+                    link: book.volumeInfo.infoLink
                 };
             });
             this.setState({ booksList: eachBook });
@@ -36,7 +35,7 @@ export default class App extends Component {
                     <SearchBar refresh={this.refresh} />
                 </div>
                 <div className="App-books">
-                    <Book refresh={this.refresh} />
+                    <Book booksList={this.state.booksList} />
                 </div>
                 <small className="App-link">
                     <a href="https://github.com/joanaammoura/book-finder" rel="noopener noreferrer" target="_blank">Open-source code</a>, with <span role="img">❤️</span> by
