@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import "./Book.css";
+import "./styles/Book.css";
 
 export default class Book extends Component {
     constructor(props) {
@@ -8,25 +8,20 @@ export default class Book extends Component {
         this.state = {}
     }
 
-    //    componentWillReceiveProps(nextProps) {
-    //        this.setState({ booksList: nextProps.eachBook }, () => {
-    //            this.props.refresh();
-    //        });
-    //    }
-
     render() {
+        return (
         if (this.props.booksList) {
             return (
                 <div className="clearfix">
                     <div className="row">
                         {this.props.booksList.map((eachBook, index) => {
                             return (
-                                <div className="book-block" key={index}>
-                                    <div className="book-block_image"><img src={eachBook.image} alt={eachBook.title} /></div>
-                                    <div className="book-block_title">{eachBook.title} </div>
-                                    <div className="book-block_author">By: {eachBook.author}</div>
-                                    <div className="book-block_publisher">Published By: {eachBook.publisher}</div>
-                                    <button className="book-block_link" src={eachBook.infoLink}>See this Book</button>
+                                <div className="book-card" key={index}>
+                                    <div className="book-card_image"><img src={eachBook.image} alt={eachBook.title} /></div>
+                                    <div className="book-card_title">{eachBook.title} </div>
+                                    <div className="book-card_author">By: {eachBook.author}</div>
+                                    <div className="book-card_publisher">Published By: {eachBook.publisher}</div>
+                                    <button className="book-card_link" src={eachBook.infoLink}>See this Book</button>
                                 </div>
                             );
                         })}
