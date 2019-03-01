@@ -7,18 +7,27 @@ import Book from './Book';
 export default class App extends Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            booksList: [],
+            value: ""
+        }
     }
 
-    refresh(params) {
-        let url = `https://www.googleapis.com/books/v1/volumes/?q=${params}&key=AIzaSyBviPGAJi2aDRF798qy22PYlgWLU71yq_g`;
+    handleChange = (event) => {
+        this.setState({ value: event.target.value });
+    }
+
+    refresh = (event) => {
+        event.preventDefault();
+        let url = `https://www.googleapis.com/books/v1/volumes/?q=${this.state.value}&key=AIzaSyBviPGAJi2aDRF798qy22PYlgWLU71yq_g`;
         axios.get(url).then(response => {
+            console.log("success!")
             let booksList = response.data.items;
             let eachBook = booksList.map(book => {
                 return {
                     image: book.volumeInfo.imageLinks.thumbnail,
                     title: book.volumeInfo.title,
-                    author: book.volumeInfo.authors[0],
+                    authors: book.volumeInfo.authors,
                     publisher: book.volumeInfo.publisher,
                     link: book.volumeInfo.infoLink
                 };
@@ -32,7 +41,7 @@ export default class App extends Component {
             <div className="App">
                 <header className="App-header">BOOK FINDER</header>
                 <div className="App-searchbar">
-                    <SearchBar refresh={this.refresh} />
+                    <SearchBar refresh={this.refresh} handleChange={this.handleChange} value={this.state.value} />
                 </div>
                 <div className="App-books">
                     <Book booksList={this.state.booksList} />
